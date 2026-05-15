@@ -1,122 +1,93 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
+// import { useState } from 'react'
+import './style.css'
 
-function App() {
-  const [count, setCount] = useState(0)
-
-  return (
+const Todo = () =>{
+  return(
     <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.tsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
+    <div>
+<h1>Todoリスト</h1>
+</div>
+<div className='input-area'>
+  <input placeholder='Todo' />
+  <button>追加</button>
+<button>すべて</button>
+<button>未完了</button>
+<button>着手中</button>
+</div>
+<div>
+  <input type='checkbox' />
+  Todoです
+  <button>編集</button>
+    <button>完了</button>
+  <button>削除</button>
+  <select>
+    <option>未完了</option>
+        <option>着手中</option>
+    <option>完了</option>
+  </select>
+</div>
+<div>
+  <input type='checkbox' />
+  Todoです
+  <button>編集</button>
+    <button>完了</button>
+  <button>削除</button>
+  <select>
+    <option>未完了</option>
+        <option>着手中</option>
+    <option>完了</option>
+  </select>
+</div>
+<div>
+  <input type='checkbox' />
+  Todoです
+  <button>編集</button>
+    <button>完了</button>
+  <button>削除</button>
+  <select>
+    <option>未完了</option>
+        <option>着手中</option>
+    <option>完了</option>
+  </select>
+</div>
+<div>
+  <input type='checkbox' />
+  Todoです
+  <button>編集</button>
+    <button>完了</button>
+  <button>削除</button>
+  <select>
+    <option>未完了</option>
+        <option>着手中</option>
+    <option>完了</option>
+  </select>
+</div>
+<div>
+  <input type='checkbox' />
+  Todoです
+  <button>編集</button>
+    <button>完了</button>
+  <button>削除</button>
+  <select>
+    <option>未完了</option>
+        <option>着手中</option>
+    <option>完了</option>
+  </select>
+</div>
+<div>
+  <h2>削除した項目</h2>
+  <div>削除済Todo1  
+    <button>元に戻す</button>
+</div>
+    <div>削除済Todo2  
+    <button>元に戻す</button>
+</div>
+  <div>削除済Todo3  
+    <button>元に戻す</button>
+</div>
 
-      <div className="ticks"></div>
-
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      <div className="ticks"></div>
-      <section id="spacer"></section>
+</div>
     </>
   )
 }
-
-export default App
+export default Todo
