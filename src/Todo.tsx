@@ -2,91 +2,114 @@
 import './style.css'
 
 const Todo = () =>{
+  // const[status,setStatus]=useState("未完了")
   return(
     <>
-    <div>
-<h1>Todoリスト</h1>
-</div>
-<div className='input-area'>
-  <input placeholder='Todo' />
-  <button>追加</button>
-<button>すべて</button>
-<button>未完了</button>
-<button>着手中</button>
-</div>
-<div>
-  <input type='checkbox' />
-  Todoです
-  <button>編集</button>
-    <button>完了</button>
-  <button>削除</button>
-  <select>
-    <option>未完了</option>
-        <option>着手中</option>
-    <option>完了</option>
-  </select>
-</div>
-<div>
-  <input type='checkbox' />
-  Todoです
-  <button>編集</button>
-    <button>完了</button>
-  <button>削除</button>
-  <select>
-    <option>未完了</option>
-        <option>着手中</option>
-    <option>完了</option>
-  </select>
-</div>
-<div>
-  <input type='checkbox' />
-  Todoです
-  <button>編集</button>
-    <button>完了</button>
-  <button>削除</button>
-  <select>
-    <option>未完了</option>
-        <option>着手中</option>
-    <option>完了</option>
-  </select>
-</div>
-<div>
-  <input type='checkbox' />
-  Todoです
-  <button>編集</button>
-    <button>完了</button>
-  <button>削除</button>
-  <select>
-    <option>未完了</option>
-        <option>着手中</option>
-    <option>完了</option>
-  </select>
-</div>
-<div>
-  <input type='checkbox' />
-  Todoです
-  <button>編集</button>
-    <button>完了</button>
-  <button>削除</button>
-  <select>
-    <option>未完了</option>
-        <option>着手中</option>
-    <option>完了</option>
-  </select>
-</div>
-<div>
-  <h2>削除した項目</h2>
-  <div>削除済Todo1  
-    <button>元に戻す</button>
-</div>
-    <div>削除済Todo2  
-    <button>元に戻す</button>
-</div>
-  <div>削除済Todo3  
-    <button>元に戻す</button>
-</div>
+    <div className='todo-app'>
+      <div className='top-bar'>
+    <div className='add-form'>
+              <input type='text' placeholder='Todo'/>
+          <button>追加</button>
+          </div>
+          <div className='filter-buttons'>
+            <button>すべて</button>
+                        <button>未完了</button>
+            <button>着手中</button>
+            <button>完了</button>
+          </div>
+          </div>
+      <ul className='todo-list'>
+        <li className='todo-item'>
+          <div className='left-group'>
+          <input type='checkbox' />
+          <div className='text-group'>
+            <div className='todo-title'>
+                    Todoです
+                            </div>  
+          <div className='todo-info'>
+<div className='date-row'>
+  <label>
+        作成日
+        <input className="date-input"type='date' />  
+</label>
 
-</div>
+  <label>
+期限
+        <input className="date-input"type='date' />  
+</label>
+          </div>
+          </div>
+          </div>
+          </div>
+          <div className='right-group'>
+          <button>編集</button>
+          <button>完了</button>
+          <button>削除</button>
+          <select>
+            <option>未完了</option>
+                        <option>着手中</option>
+            <option>完了</option>
+
+          </select>
+          </div>
+        </li>
+        <li className='todo-item'>
+          <div className='left-group'>
+          <input type='checkbox' />
+                    <div className='text-group'>
+<div className='todo-title'>
+                    Todoです
+                    </div>
+          <div className='todo-info'>
+<div className='date-row'>
+  <label>
+        作成日
+        <input className="date-input"type='date' />  
+</label>
+
+  <label>
+期限
+        <input className="date-input"type='date' />  
+</label>
+          </div>
+          </div>
+          </div>
+                    </div>
+
+          <div className='right-group'>
+          <button>編集</button>
+          <button>完了</button>
+          <button>削除</button>
+          <select>
+            <option>未完了</option>
+                        <option>着手中</option>
+            <option>完了</option>
+
+          </select>
+          </div>
+        </li>
+
+      </ul>
+      <div className='trash-area'>
+        <div className='trash-content'>
+          <div className='trash-title'>
+        削除したリスト
+        </div>
+        <ul className='trash-list'>
+          <li className='trash-item'>
+            削除したTodo
+            <button>元に戻す</button>
+          </li>
+          <li className='trash-item'>
+            削除したTodo
+            <button>元に戻す</button>
+          </li>
+
+        </ul>
+      </div>
+      </div>
+                </div>
+
     </>
   )
 }

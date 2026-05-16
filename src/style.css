@@ -1,0 +1,99 @@
+.add-form{
+    display: flex;
+    align-items: center;
+    position: relative;
+    width: 260px;
+    justify-content: center;
+}
+.add-form input{
+    height: 30px;
+    border: 1px solid #999;
+    border-radius: 8px;
+    width: 240px;
+}
+.add-form button{
+    height: 24px;
+    border: 1px solid #999;
+    border-radius: 6px;
+    margin-left: -45px;
+}
+.add-form input,
+.add-form button{
+    box-sizing: border-box;
+}
+.todo-app{
+    width: 700px;
+    margin: 0 auto;
+    background-color: lightpink;
+}
+.filter-buttons{
+    display: flex;
+    align-items: center;
+    height: 30px;
+    border-radius: 6px;
+    gap: 8px;
+}
+.top-bar{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+    margin-top: 20px;
+}
+.todo-list{
+    padding: 0;
+}
+.todo-item{
+    display: flex;
+    margin-bottom: 16px;
+}
+.todo-info{
+    font-size: 12px;
+}
+.left-group{
+    display: flex;
+    align-items: flex-start;
+    margin-left: 90px;
+}
+.left-group input[type="checkbox"]{
+    margin-left: 0;
+}
+.todo-title{
+    margin-right: 180px;
+    font-size: 18px;
+    margin-bottom: 16px;
+}
+.right-group{
+    display: flex;
+    gap: 15px;
+    align-items: flex-start;
+    margin-left: 5px;
+}
+.date-input{
+    height: 15px;
+}
+ul{
+    list-style: none;
+}
+.trash-area{
+    display: flex;
+    flex-direction: column;
+    background-color: mistyrose;
+    width: 100%;
+}
+.trash-item{
+    margin-bottom: 12px;
+}
+.trash-item button{
+    margin-left:12px ;
+}
+.trash-content{
+    width: 80%;
+    margin: 0 auto;
+    text-align: left;
+}
+.trash-title{
+    text-align: left;
+    margin-left: 20px;
+
+}
