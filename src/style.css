@@ -7,19 +7,25 @@
 }
 .add-form input{
     height: 30px;
-    border: 1px solid #999;
+    border: 1px solid #df89b1f3;
     border-radius: 8px;
     width: 240px;
+    padding-right: 60px;
 }
 .add-form button{
     height: 24px;
-    border: 1px solid #999;
+    border: 1px solid #df89b1f3;
     border-radius: 6px;
     margin-left: -45px;
+    background-color: rgb(243, 192, 213);
 }
 .add-form input,
 .add-form button{
     box-sizing: border-box;
+}
+.add-form input:focus{
+    outline:none;
+    border-color: palevioletred;
 }
 .todo-app{
     width: 700px;
@@ -30,8 +36,12 @@
     display: flex;
     align-items: center;
     height: 30px;
-    border-radius: 6px;
     gap: 8px;
+}
+.filter-btn{
+    background-color: rgba(247, 207, 229, 0.669);
+    border-radius: 8px;
+    border: 1px solid #df89b1f3  ;
 }
 .top-bar{
     display: flex;
@@ -40,37 +50,81 @@
     gap: 50px;
     margin-top: 20px;
 }
+
 .todo-list{
     padding: 0;
+    padding-left: 90px;
 }
 .todo-item{
     display: flex;
+    align-items: flex-start;
+    gap: 24px;
     margin-bottom: 16px;
 }
+.title-box{
+    width: 240px;
+}
 .todo-info{
+    display: flex;
+    flex-direction: column;
     font-size: 12px;
+    gap: 8px;
 }
 .left-group{
     display: flex;
-    align-items: flex-start;
-    margin-left: 90px;
+    gap: 12px;
 }
 .left-group input[type="checkbox"]{
     margin-left: 0;
 }
 .todo-title{
-    margin-right: 180px;
     font-size: 18px;
     margin-bottom: 16px;
+    word-break: break-all;
+    text-align: left;
+}
+.text-group{
+    display: flex;
+    flex-direction: column;
+
+}
+.date-row{
+    display: flex;
+    gap: 12px;
+}
+.completed{
+    text-decoration: line-through;
+}
+input[type='checkbox']{
+accent-color: #e5e7eb;
+flex-shrink: 0;
+align-self: flex-start;
 }
 .right-group{
     display: flex;
-    gap: 15px;
-    align-items: flex-start;
-    margin-left: 5px;
+    gap: 3px;
+    flex-shrink: 0;
+}
+.right-btn{
+    background-color: cornsilk;
+    border-radius: 8px;
+    border: 1px solid #f3c679;
+}
+.status-select{
+    background-color: cornsilk;
+        border: 1px solid #f3c679;
+        border-radius: 3px;
+
 }
 .date-input{
     height: 15px;
+    background-color: mistyrose;
+    border-radius: 3px;
+    border: 1px solid #df89b1f3;
+}
+.date-input:focus{
+    outline:none;
+    border-color:  palevioletred;
 }
 ul{
     list-style: none;
@@ -82,10 +136,19 @@ ul{
     width: 100%;
 }
 .trash-item{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     margin-bottom: 12px;
 }
 .trash-item button{
     margin-left:12px ;
+}
+.restore-btn{
+    background-color:  cornsilk;
+    border: 1px solid #f3c679;
+    border-radius: 8px;
+    min-width: 80px;
 }
 .trash-content{
     width: 80%;
