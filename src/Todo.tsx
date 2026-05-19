@@ -5,19 +5,31 @@ const Todo = () =>{
   // const[status,setStatus]=useState("未完了")
   const[text,setText]=useState("")
     const [todos,setTodos]=useState<{
+      id:number
       text: string
       completed: boolean
     }[]>([])
     const[deletedTodos,setDeletedTodos]=useState<{
+      id:number
       text:string
       completed:boolean
     }[]
     >([])
   const addTodo=()=>{
     setTodos([...todos,
-      {text:text,
+      {id:1,
+        text:text,
       completed:false
     }])
+  }
+  const handleRestore=(id: number)=>{
+  const restoreTodo=deletedTodos.find((todo)=> todo.id===id
+  )
+  if(!restoreTodo)return
+  setTodos([...todos,restoreTodo])
+  setDeletedTodos(
+    deletedTodos.filter((todo)=>todo.id !==id)
+  )
   }
   return(
     <>
@@ -26,7 +38,7 @@ const Todo = () =>{
     <div className='add-form'>
               <input type='text' 
               placeholder='Todo'
-              value={text}onChange={(e) => setText(e.target.value)}/>
+   value={text}onChange={(e) => setText(e.target.value)}/>
           <button onClick={addTodo}>追加</button>
           </div>
           <div className='filter-buttons'>
@@ -110,13 +122,10 @@ setTodos(
           <li className='trash-item'>
             {todo.text}
             
-            <button className='restore-btn'>元に戻す</button>
+            <button className='restore-btn'
+            onClick={()=>handleRestore(todo.id)}>元に戻す</button>
           </li>
           ))}
-          <li className='trash-item'>
-            削除したTodo
-            <button className='restore-btn'>元に戻す</button>
-          </li>
 
         </ul>
       </div>
