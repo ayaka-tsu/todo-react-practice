@@ -8,7 +8,7 @@ const Todo = () => {
       id: number;
       text: string;
       completed: boolean;
-      status:string;
+      status: string;
     }[]
   >([]);
   const [deletedTodos, setDeletedTodos] = useState<
@@ -19,14 +19,14 @@ const Todo = () => {
     }[]
   >([]);
   const [isTrashOpen, setIsTrashOpen] = useState(false);
-  const [filter,setFilter]=useState("すべて");
-    const[status,setStatus]=useState("未完了");
+  const [filter, setFilter] = useState("すべて");
+  // const [status, setStatus] = useState("未完了");
   const addTodo = () => {
     if (!text.trim()) return;
-    setTodos([...todos, { id: Date.now(), 
-      text: text,
-       completed: false,
-      status:"status"}]);
+    setTodos([
+      ...todos,
+      { id: Date.now(), text: text, completed: false, status: "未完了" },
+    ]);
     setText("");
   };
   const handleRestore = (id: number) => {
@@ -35,7 +35,7 @@ const Todo = () => {
     const resetTodo = {
       ...restoreTodo,
       completed: false,
-      status:"未完了",
+      status: "未完了",
     };
 
     setTodos([...todos, resetTodo]);
@@ -44,10 +44,10 @@ const Todo = () => {
   const handleDeleteForever = (id: number) => {
     setDeletedTodos(deletedTodos.filter((todo) => todo.id !== id));
   };
-  const filteredTodos = todos.filter((todo)=>{
-    if(filter==="すべて")return true;
-    return todo.status===filter;
-  })
+  const filteredTodos = todos.filter((todo) => {
+    if (filter === "すべて") return true;
+    return todo.status === filter;
+  });
   return (
     <>
       <div className="todo-app">
@@ -62,14 +62,18 @@ const Todo = () => {
             <button onClick={addTodo}>追加</button>
           </div>
           <div className="filter-buttons">
-            <button className="filter-btn" onClick={()=>setFilter("すべて")}
-              >すべて</button>
-            <button className="filter-btn" onClick={()=>setFilter("未完了")}
-              >未完了</button>
-            <button className="filter-btn" onClick={()=>setFilter("着手中")}
-              >着手中</button>
-            <button className="filter-btn" onClick={()=>setFilter("完了")}
-              >完了</button>
+            <button className="filter-btn" onClick={() => setFilter("すべて")}>
+              すべて
+            </button>
+            <button className="filter-btn" onClick={() => setFilter("未完了")}>
+              未完了
+            </button>
+            <button className="filter-btn" onClick={() => setFilter("着手中")}>
+              着手中
+            </button>
+            <button className="filter-btn" onClick={() => setFilter("完了")}>
+              完了
+            </button>
           </div>
         </div>
         <ul className="todo-list">
@@ -127,13 +131,16 @@ const Todo = () => {
                 >
                   削除
                 </button>
-                <select className="status-select"
-                value={todo.status}
-                onChange={(e)=>setTodos(todos.map((t)=>
-                t.id===todo.id
-              ? {...t,status: e.target.value}
-            : t
-          ))}
+                <select
+                  className="status-select"
+                  value={todo.status}
+                  onChange={(e) =>
+                    setTodos(
+                      todos.map((t) =>
+                        t.id === todo.id ? { ...t, status: e.target.value } : t,
+                      ),
+                    )
+                  }
                 >
                   <option>未完了</option>
                   <option>着手中</option>
@@ -154,7 +161,7 @@ const Todo = () => {
             </button>
           </div>
           {isTrashOpen && (
-          <div className="trash-content">
+            <div className="trash-content">
               <ul className="trash-list">
                 {deletedTodos.map((todo) => (
                   <li className="trash-item">
