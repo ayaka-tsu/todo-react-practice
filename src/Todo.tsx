@@ -21,6 +21,8 @@ const Todo = () => {
   const [isTrashOpen, setIsTrashOpen] = useState(false);
   const [filter, setFilter] = useState("すべて");
   // const [status, setStatus] = useState("未完了");
+  const [editingId,setEditingId]=useState<number | null>(null);
+  const[editText,setEditText]=useState("");
   const addTodo = () => {
     if (!text.trim()) return;
     setTodos([
@@ -88,7 +90,22 @@ const Todo = () => {
                         todo.completed ? "todo-title completed" : "todo-title"
                       }
                     >
-                      {todo.text}
+                      {
+                      todo.id===editingId ? <input value={editText}
+                       onChange={(e)=>setEditText(e.target.value)}
+                       autoFocus
+                       onKeyDown={(e)=>{
+                        if(e.key==="Enter"){
+                         setTodos(
+                          todos.map((t)=>
+                          t.id===todo.id
+                          ? {...t,text:editText} : t
+                        )
+                         );
+                         setEditingId(null);
+                        }}
+                       }
+                       /> : todo.text}
                     </div>
                   </div>
 
@@ -108,7 +125,10 @@ const Todo = () => {
                 </div>
               </div>
               <div className="right-group">
-                <button className="right-btn">編集</button>
+                <button className="right-btn"
+                onClick={()=>{setEditingId(todo.id);
+                  setEditText(todo.text);
+                }}>編集</button>
                 <button
                   className="right-btn"
                   onClick={() =>
