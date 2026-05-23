@@ -147,8 +147,8 @@ ul{
     margin-left:12px ;
 }
 .restore-btn{
-    background-color:  cornsilk;
-    border: 1px solid #f3c679;
+    background-color:  rgba(43, 180, 218, 0.413);
+    border: 1px solid #136cd8cb;
     border-radius: 8px;
     min-width: 64px;
 }
@@ -177,7 +177,20 @@ line-height: 1;
     overflow-y:auto ;
 }
 .delete-btn{
-    border: 1px solid cornflowerblue;
+    border: 1px solid rgba(227, 13, 13, 0.623);
     border-radius: 8px;
-    background-color:#69decf53
+    background-color:#f13671c2
+}
+.edit-input{
+    border: none;
+    background: transparent;
+    outline: none;
+    width: 100%;
+    font-size: inherit;
+    font-family: inherit;
+    color: inherit;
+}
+.save-btn{
+    background-color: #7fda9a84;
+    border: 1px solid #2cd28f77;
 }
