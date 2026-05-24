@@ -82,7 +82,17 @@ const Todo = () => {
           {filteredTodos.map((todo) => (
             <li className="todo-item">
               <div className="left-group">
-                <input type="checkbox" checked={todo.completed} />
+                <input type="checkbox"
+                checked={todo.completed}
+                onChange={()=>{
+                      setTodos(
+                      todos.map((item) =>
+                        item === todo ? { ...item, completed: !item.completed,
+                          status:!item.completed ? "完了" : "未完了"
+                         } : item,
+                      ),
+                    )
+                }} />
                 <div className="text-group">
                   <div className="title-box">
                     <div
@@ -158,7 +168,7 @@ const Todo = () => {
                 {editingId===todo.id ? "保存" :"編集"}
                 
                 </button>
-                <button
+                {/* <button
                   className="right-btn"
                   onClick={() =>
                     setTodos(
@@ -169,7 +179,7 @@ const Todo = () => {
                   }
                 >
                   完了
-                </button>
+                </button> */}
                 <button
                   className="right-btn"
                   onClick={() => {
@@ -186,7 +196,10 @@ const Todo = () => {
                   onChange={(e) =>
                     setTodos(
                       todos.map((t) =>
-                        t.id === todo.id ? { ...t, status: e.target.value } : t,
+                        t.id === todo.id ? { ...t, status: e.target.value,
+                          completed:e.target.value==="完了"
+                         } : t,
+                      
                       ),
                     )
                   }
