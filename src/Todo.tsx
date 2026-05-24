@@ -140,6 +140,17 @@ const Todo = () => {
                     : "right-btn"
                   }
                   onClick={() => {
+                    if(editingId===todo.id){
+                      setTodos(
+                        todos.map((t)=>
+                        t.id===todo.id
+                      ? {...t,text:editText}
+                    :t
+                  )
+                      )
+                      setEditingId(null)
+                      return
+                    }
                     setEditingId(todo.id);
                     setEditText(todo.text);
                   }}
