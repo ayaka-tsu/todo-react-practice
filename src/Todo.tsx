@@ -9,7 +9,8 @@ const Todo = () => {
       text: string;
       completed: boolean;
       status: string;
-      completedAt:number | null
+      completedAt: number | null;
+      order: number;
     }[]
   >([]);
   const [deletedTodos, setDeletedTodos] = useState<
@@ -17,6 +18,9 @@ const Todo = () => {
       id: number;
       text: string;
       completed: boolean;
+      status: string;
+      completedAt: number | null;
+      order: number;
     }[]
   >([]);
   const [isTrashOpen, setIsTrashOpen] = useState(false);
@@ -28,9 +32,14 @@ const Todo = () => {
     if (!text.trim()) return;
     setTodos([
       ...todos,
-      { id: Date.now(), text: text, completed: false, status: "未完了",
-      completedAt: null  
-       },
+      {
+        id: Date.now(),
+        text: text,
+        completed: false,
+        status: "未完了",
+        completedAt: Date.now(),
+        order: Date.now(),
+      },
     ]);
     setText("");
   };
@@ -41,7 +50,8 @@ const Todo = () => {
       ...restoreTodo,
       completed: false,
       status: "未完了",
-      completedAt:null
+      completedAt: null,
+      order: restoreTodo.order,
     };
 
     setTodos([...todos, resetTodo]);
@@ -53,6 +63,15 @@ const Todo = () => {
   const filteredTodos = todos.filter((todo) => {
     if (filter === "すべて") return true;
     return todo.status === filter;
+  });
+  const sortedTodos = [...filteredTodos].sort((a, b) => {
+    if (a.completed !== b.completed) {
+      return Number(a.completed) - Number(b.completed);
+    }
+    if (a.completed) {
+      return (a.completedAt ?? 0) - (b.completedAt ?? 0);
+    }
+    return a.order - b.order;
   });
   return (
     <>
@@ -83,13 +102,7 @@ const Todo = () => {
           </div>
         </div>
         <ul className="todo-list">
-          {filteredTodos.sort((a, b)=>{
-            if(a.completed!==b.completed){
-            
-           return Number(a.completed) - Number(b.completed)}
-           return(a.completedAt??0)-(b.completedAt??0)
-            })
-            .map((todo) => (
+          {sortedTodos.map((todo) => (
             <li className="todo-item">
               <div className="left-group">
                 <input
@@ -103,9 +116,9 @@ const Todo = () => {
                               ...item,
                               completed: !item.completed,
                               status: !item.completed ? "完了" : "未完了",
-                              completedAt:
-                              !item.completed
-                              ? Date.now() : null
+                              completedAt: !item.completed ? Date.now() : null,
+
+                              order: item.order,
                             }
                           : item,
                       ),
@@ -216,8 +229,8 @@ const Todo = () => {
                               ...t,
                               status: e.target.value,
                               completed: e.target.value === "完了",
-                              completedAt:e.target.value==="完了"
-                              ? Date.now() : null
+                              completedAt:
+                                e.target.value === "完了" ? Date.now() : null,
                             }
                           : t,
                       ),
