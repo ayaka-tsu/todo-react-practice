@@ -9,6 +9,7 @@ const Todo = () => {
       text: string;
       completed: boolean;
       status: string;
+      completedAt:number | null
     }[]
   >([]);
   const [deletedTodos, setDeletedTodos] = useState<
@@ -27,7 +28,9 @@ const Todo = () => {
     if (!text.trim()) return;
     setTodos([
       ...todos,
-      { id: Date.now(), text: text, completed: false, status: "未完了" },
+      { id: Date.now(), text: text, completed: false, status: "未完了",
+      completedAt: null  
+       },
     ]);
     setText("");
   };
@@ -38,6 +41,7 @@ const Todo = () => {
       ...restoreTodo,
       completed: false,
       status: "未完了",
+      completedAt:null
     };
 
     setTodos([...todos, resetTodo]);
@@ -79,7 +83,13 @@ const Todo = () => {
           </div>
         </div>
         <ul className="todo-list">
-          {filteredTodos.sort((a, b)=>Number(a.completed) - Number(b.completed)).map((todo) => (
+          {filteredTodos.sort((a, b)=>{
+            if(a.completed!==b.completed){
+            
+           return Number(a.completed) - Number(b.completed)}
+           return(a.completedAt??0)-(b.completedAt??0)
+            })
+            .map((todo) => (
             <li className="todo-item">
               <div className="left-group">
                 <input
@@ -93,6 +103,9 @@ const Todo = () => {
                               ...item,
                               completed: !item.completed,
                               status: !item.completed ? "完了" : "未完了",
+                              completedAt:
+                              !item.completed
+                              ? Date.now() : null
                             }
                           : item,
                       ),
@@ -203,6 +216,8 @@ const Todo = () => {
                               ...t,
                               status: e.target.value,
                               completed: e.target.value === "完了",
+                              completedAt:e.target.value==="完了"
+                              ? Date.now() : null
                             }
                           : t,
                       ),
