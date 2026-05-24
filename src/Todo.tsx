@@ -79,20 +79,26 @@ const Todo = () => {
           </div>
         </div>
         <ul className="todo-list">
-          {filteredTodos.map((todo) => (
+          {filteredTodos.sort((a, b)=>Number(a.completed) - Number(b.completed)).map((todo) => (
             <li className="todo-item">
               <div className="left-group">
-                <input type="checkbox"
-                checked={todo.completed}
-                onChange={()=>{
-                      setTodos(
+                <input
+                  type="checkbox"
+                  checked={todo.completed}
+                  onChange={() => {
+                    setTodos(
                       todos.map((item) =>
-                        item === todo ? { ...item, completed: !item.completed,
-                          status:!item.completed ? "完了" : "未完了"
-                         } : item,
+                        item === todo
+                          ? {
+                              ...item,
+                              completed: !item.completed,
+                              status: !item.completed ? "完了" : "未完了",
+                            }
+                          : item,
                       ),
-                    )
-                }} />
+                    );
+                  }}
+                />
                 <div className="text-group">
                   <div className="title-box">
                     <div
@@ -101,14 +107,15 @@ const Todo = () => {
                       }
                     >
                       {todo.id === editingId ? (
-                        <input className="edit-input"
+                        <input
+                          className="edit-input"
                           value={editText}
                           onChange={(e) => setEditText(e.target.value)}
                           autoFocus
                           onKeyDown={(e) => {
                             if (e.key === "Enter") {
-                              if(editText.trim()===""){
-                                return
+                              if (editText.trim() === "") {
+                                return;
                               }
                               setTodos(
                                 todos.map((t) =>
@@ -145,28 +152,23 @@ const Todo = () => {
               <div className="right-group">
                 <button
                   className={
-                    editingId===todo.id
-                    ? "right-btn save-btn"
-                    : "right-btn"
+                    editingId === todo.id ? "right-btn save-btn" : "right-btn"
                   }
                   onClick={() => {
-                    if(editingId===todo.id){
+                    if (editingId === todo.id) {
                       setTodos(
-                        todos.map((t)=>
-                        t.id===todo.id
-                      ? {...t,text:editText}
-                    :t
-                  )
-                      )
-                      setEditingId(null)
-                      return
+                        todos.map((t) =>
+                          t.id === todo.id ? { ...t, text: editText } : t,
+                        ),
+                      );
+                      setEditingId(null);
+                      return;
                     }
                     setEditingId(todo.id);
                     setEditText(todo.text);
                   }}
                 >
-                {editingId===todo.id ? "保存" :"編集"}
-                
+                  {editingId === todo.id ? "保存" : "編集"}
                 </button>
                 {/* <button
                   className="right-btn"
@@ -196,10 +198,13 @@ const Todo = () => {
                   onChange={(e) =>
                     setTodos(
                       todos.map((t) =>
-                        t.id === todo.id ? { ...t, status: e.target.value,
-                          completed:e.target.value==="完了"
-                         } : t,
-                      
+                        t.id === todo.id
+                          ? {
+                              ...t,
+                              status: e.target.value,
+                              completed: e.target.value === "完了",
+                            }
+                          : t,
                       ),
                     )
                   }
