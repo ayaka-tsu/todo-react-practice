@@ -115,6 +115,7 @@ align-self: flex-start;
     background-color: cornsilk;
         border: 1px solid #f3c679;
         border-radius: 3px;
+        outline: none;
 
 }
 .date-input{
@@ -193,4 +194,14 @@ line-height: 1;
 .save-btn{
     background-color: #7fda9a84;
     border: 1px solid #2cd28f77;
+}
+.filter-btn.active{
+    background-color:rgba(158, 238, 242, 0.701);
+    border: 1px solid #13b7d8ad;
+}
+button{
+    transition: 0.15s;
+}
+button:active{
+    transform: scale(0.95);
 }
