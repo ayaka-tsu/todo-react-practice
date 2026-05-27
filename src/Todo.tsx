@@ -7,6 +7,7 @@ const Todo = () => {
     {
       id: number;
       text: string;
+      createdAt: string;
       completed: boolean;
       status: string;
       completedAt: number | null;
@@ -35,6 +36,9 @@ const Todo = () => {
       {
         id: Date.now(),
         text: text,
+
+        createdAt: new Date().toISOString().split("T")[0],
+
         completed: false,
         status: "未完了",
         completedAt: Date.now(),
@@ -52,6 +56,8 @@ const Todo = () => {
       status: "未完了",
       completedAt: null,
       order: restoreTodo.order,
+
+      createdAt: new Date().toISOString().split("T")[0],
     };
 
     setTodos([...todos, resetTodo]);
@@ -87,37 +93,28 @@ const Todo = () => {
             <button onClick={addTodo}>追加</button>
           </div>
           <div className="filter-buttons">
-            <button className={`filter-btn ${
-              filter==="すべて"
-              ? "active"
-              : ""
-            } `}
-            onClick={() => setFilter("すべて")}>
+            <button
+              className={`filter-btn ${filter === "すべて" ? "active" : ""} `}
+              onClick={() => setFilter("すべて")}
+            >
               すべて
             </button>
-            <button className={`filter-btn ${
-              filter==="未完了"
-             ? "active"
-            : ""
-            } `}
-
-              onClick={() => setFilter("未完了")}>
+            <button
+              className={`filter-btn ${filter === "未完了" ? "active" : ""} `}
+              onClick={() => setFilter("未完了")}
+            >
               未完了
             </button>
-            <button className={`filter-btn ${
-              filter==="着手中"
-            ? "active"
-            : ""
-            } `}
-              onClick={() => setFilter("着手中")}>
+            <button
+              className={`filter-btn ${filter === "着手中" ? "active" : ""} `}
+              onClick={() => setFilter("着手中")}
+            >
               着手中
             </button>
-            <button className={`filter-btn ${
-              filter==="完了"
-                          ? "active"
-            : ""
-            } `}
-            onClick={() => setFilter("完了")}>
+            <button
+              className={`filter-btn ${filter === "完了" ? "active" : ""} `}
+              onClick={() => setFilter("完了")}
+            >
               完了
             </button>
           </div>
@@ -185,7 +182,11 @@ const Todo = () => {
                     <div className="date-row">
                       <label>
                         作成日
-                        <input className="date-input" type="date" />
+                        <input
+                          className="date-input"
+                          type="date"
+                          defaultValue={new Date().toISOString().split("T")[0]}
+                        />
                       </label>
 
                       <label>
