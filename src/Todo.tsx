@@ -14,10 +14,12 @@ const Todo = () => {
       order: number;
     }[]
   >([]);
+  console.log(todos)
   const [deletedTodos, setDeletedTodos] = useState<
     {
       id: number;
       text: string;
+      createdAt: string;
       completed: boolean;
       status: string;
       completedAt: number | null;
@@ -56,8 +58,8 @@ const Todo = () => {
       status: "未完了",
       completedAt: null,
       order: restoreTodo.order,
-
-      createdAt: new Date().toISOString().split("T")[0],
+      createdAt: restoreTodo.createdAt,
+      // createdAt: new Date().toISOString().split("T")[0],
     };
 
     setTodos([...todos, resetTodo]);
@@ -185,7 +187,16 @@ const Todo = () => {
                         <input
                           className="date-input"
                           type="date"
-                          defaultValue={new Date().toISOString().split("T")[0]}
+                          defaultValue={todo.createdAt}
+                          onChange={(e)=>{
+                            setTodos(
+                              todos.map((item)=>
+                              item.id===todo.id
+                            ?{...item,createdAt: e.target.value}
+                          : item
+                        )
+                            )
+                          }}
                         />
                       </label>
 
@@ -206,7 +217,14 @@ const Todo = () => {
                     if (editingId === todo.id) {
                       setTodos(
                         todos.map((t) =>
-                          t.id === todo.id ? { ...t, text: editText } : t,
+                          t.id === todo.id
+                            ? {
+                                ...t,
+                                text: editText,
+
+                                createdAt: t.createdAt,
+                              }
+                            : t,
                         ),
                       );
                       setEditingId(null);
