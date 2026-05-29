@@ -8,18 +8,20 @@ const Todo = () => {
       id: number;
       text: string;
       createdAt: string;
+      dueDate: string;
       completed: boolean;
       status: string;
       completedAt: number | null;
       order: number;
     }[]
   >([]);
-  console.log(todos)
+  console.log(todos);
   const [deletedTodos, setDeletedTodos] = useState<
     {
       id: number;
       text: string;
       createdAt: string;
+      dueDate: string;
       completed: boolean;
       status: string;
       completedAt: number | null;
@@ -40,7 +42,7 @@ const Todo = () => {
         text: text,
 
         createdAt: new Date().toISOString().split("T")[0],
-
+        dueDate: "",
         completed: false,
         status: "未完了",
         completedAt: Date.now(),
@@ -59,6 +61,7 @@ const Todo = () => {
       completedAt: null,
       order: restoreTodo.order,
       createdAt: restoreTodo.createdAt,
+      dueDate: restoreTodo.dueDate,
       // createdAt: new Date().toISOString().split("T")[0],
     };
 
@@ -188,21 +191,32 @@ const Todo = () => {
                           className="date-input"
                           type="date"
                           defaultValue={todo.createdAt}
-                          onChange={(e)=>{
+                          onChange={(e) => {
                             setTodos(
-                              todos.map((item)=>
-                              item.id===todo.id
-                            ?{...item,createdAt: e.target.value}
-                          : item
-                        )
-                            )
+                              todos.map((item) =>
+                                item.id === todo.id
+                                  ? { ...item, createdAt: e.target.value }
+                                  : item,
+                              ),
+                            );
                           }}
                         />
                       </label>
 
                       <label>
                         期限
-                        <input className="date-input" type="date" />
+                        <input className="date-input" type="date"
+                        defaultValue={todo.dueDate}
+                                                  onChange={(e) => {
+                            setTodos(
+                              todos.map((item) =>
+                                item.id === todo.id
+                                  ? { ...item, dueDate: e.target.value }
+                                  : item,
+                              ),
+                            );
+                          }}
+                         />
                       </label>
                     </div>
                   </div>
