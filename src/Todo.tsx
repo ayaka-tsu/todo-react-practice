@@ -1,10 +1,11 @@
 import { useState } from "react";
+import TodoItem from "./components/TodoItem";
+import TodoDates from "./components/TodoDates";
 import "./style.css";
 
 const Todo = () => {
   const [text, setText] = useState("");
-  const [todos, setTodos] = useState<
-    {
+  type Todo={
       id: number;
       text: string;
       createdAt: string;
@@ -13,9 +14,19 @@ const Todo = () => {
       status: string;
       completedAt: number | null;
       order: number;
-    }[]
+  }
+  const [todos, setTodos] = useState<Todo[]
+    // {
+    //   id: number;
+    //   text: string;
+    //   createdAt: string;
+    //   dueDate: string;
+    //   completed: boolean;
+    //   status: string;
+    //   completedAt: number | null;
+    //   order: number;
+    // }[]
   >([]);
-  console.log(todos);
   const [deletedTodos, setDeletedTodos] = useState<
     {
       id: number;
@@ -40,7 +51,6 @@ const Todo = () => {
       {
         id: Date.now(),
         text: text,
-
         createdAt: new Date().toISOString().split("T")[0],
         dueDate: "",
         completed: false,
@@ -178,14 +188,19 @@ const Todo = () => {
                           }}
                         />
                       ) : (
-                        todo.text
+                        <TodoItem todo={todo} />
                       )}
                     </div>
                   </div>
 
                   <div className="todo-info">
-                    <div className="date-row">
-                      <label>
+                    <TodoDates
+                    todo={todo} 
+                    todos={todos}
+                    setTodos={setTodos}
+                    />
+                    {/* <div className="date-row"> */}
+                      {/* <label>
                         作成日
                         <input
                           className="date-input"
@@ -201,13 +216,15 @@ const Todo = () => {
                             );
                           }}
                         />
-                      </label>
+                      </label> */}
 
-                      <label>
+                      {/* <label>
                         期限
-                        <input className="date-input" type="date"
-                        defaultValue={todo.dueDate}
-                                                  onChange={(e) => {
+                        <input
+                          className="date-input"
+                          type="date"
+                          defaultValue={todo.dueDate}
+                          onChange={(e) => {
                             setTodos(
                               todos.map((item) =>
                                 item.id === todo.id
@@ -216,9 +233,9 @@ const Todo = () => {
                               ),
                             );
                           }}
-                         />
-                      </label>
-                    </div>
+                        />
+                      </label> */}
+                    {/* </div> */}
                   </div>
                 </div>
               </div>
@@ -250,18 +267,6 @@ const Todo = () => {
                 >
                   {editingId === todo.id ? "保存" : "編集"}
                 </button>
-                {/* <button
-                  className="right-btn"
-                  onClick={() =>
-                    setTodos(
-                      todos.map((item) =>
-                        item === todo ? { ...item, completed: true } : item,
-                      ),
-                    )
-                  }
-                >
-                  完了
-                </button> */}
                 <button
                   className="right-btn"
                   onClick={() => {
