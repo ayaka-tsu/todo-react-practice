@@ -279,6 +279,7 @@ const Todo = () => {
                     setDeletedTodos([...deletedTodos, todo]);
 
                     setTodos(todos.filter((item) => item !== todo));
+                    setEditingId(null);
                   }}
                 >
                   削除
