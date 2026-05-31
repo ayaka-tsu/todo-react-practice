@@ -2,20 +2,23 @@ import { useState } from "react";
 import TodoItem from "./components/TodoItem";
 import TodoDates from "./components/TodoDates";
 import "./style.css";
+import TodoForm from "./components/TodoForm";
+import FilterButtons from "./components/FilterButtons";
 
 const Todo = () => {
   const [text, setText] = useState("");
-  type Todo={
-      id: number;
-      text: string;
-      createdAt: string;
-      dueDate: string;
-      completed: boolean;
-      status: string;
-      completedAt: number | null;
-      order: number;
-  }
-  const [todos, setTodos] = useState<Todo[]
+  type Todo = {
+    id: number;
+    text: string;
+    createdAt: string;
+    dueDate: string;
+    completed: boolean;
+    status: string;
+    completedAt: number | null;
+    order: number;
+  };
+  const [todos, setTodos] = useState<
+    Todo[]
     // {
     //   id: number;
     //   text: string;
@@ -98,7 +101,12 @@ const Todo = () => {
     <>
       <div className="todo-app">
         <div className="top-bar">
-          <div className="add-form">
+          <TodoForm
+          text={text}
+          setText={setText}
+          addTodo={addTodo}
+          />
+          {/* <div className="add-form">
             <input
               type="text"
               placeholder="Todo"
@@ -106,8 +114,12 @@ const Todo = () => {
               onChange={(e) => setText(e.target.value)}
             />
             <button onClick={addTodo}>追加</button>
-          </div>
-          <div className="filter-buttons">
+          </div> */}
+          <FilterButtons
+          filter={filter}
+          setFilter={setFilter}
+          />
+          {/* <div className="filter-buttons">
             <button
               className={`filter-btn ${filter === "すべて" ? "active" : ""} `}
               onClick={() => setFilter("すべて")}
@@ -132,7 +144,7 @@ const Todo = () => {
             >
               完了
             </button>
-          </div>
+          </div> */}
         </div>
         <ul className="todo-list">
           {sortedTodos.map((todo) => (
@@ -188,19 +200,21 @@ const Todo = () => {
                           }}
                         />
                       ) : (
-                        <TodoItem todo={todo} />
+                        <TodoItem 
+                        todo={todo} 
+                        editingId={editingId}
+                        editText={editText}
+                        setEditText={setEditText}
+                          setEditingId={setEditingId}
+
+                         />
                       )}
                     </div>
                   </div>
-
                   <div className="todo-info">
-                    <TodoDates
-                    todo={todo} 
-                    todos={todos}
-                    setTodos={setTodos}
-                    />
+                    <TodoDates todo={todo} todos={todos} setTodos={setTodos} />
                     {/* <div className="date-row"> */}
-                      {/* <label>
+                    {/* <label>
                         作成日
                         <input
                           className="date-input"
@@ -217,8 +231,7 @@ const Todo = () => {
                           }}
                         />
                       </label> */}
-
-                      {/* <label>
+                    {/* <label>
                         期限
                         <input
                           className="date-input"
@@ -252,7 +265,6 @@ const Todo = () => {
                             ? {
                                 ...t,
                                 text: editText,
-
                                 createdAt: t.createdAt,
                               }
                             : t,
