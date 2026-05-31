@@ -54,7 +54,7 @@ const Todo = () => {
       {
         id: Date.now(),
         text: text,
-        createdAt: new Date().toISOString().split("T")[0],
+        createdAt: new Date().toLocaleDateString("sv-SE"),
         dueDate: "",
         completed: false,
         status: "未完了",
@@ -101,11 +101,7 @@ const Todo = () => {
     <>
       <div className="todo-app">
         <div className="top-bar">
-          <TodoForm
-          text={text}
-          setText={setText}
-          addTodo={addTodo}
-          />
+          <TodoForm text={text} setText={setText} addTodo={addTodo} />
           {/* <div className="add-form">
             <input
               type="text"
@@ -115,10 +111,7 @@ const Todo = () => {
             />
             <button onClick={addTodo}>追加</button>
           </div> */}
-          <FilterButtons
-          filter={filter}
-          setFilter={setFilter}
-          />
+          <FilterButtons filter={filter} setFilter={setFilter} />
           {/* <div className="filter-buttons">
             <button
               className={`filter-btn ${filter === "すべて" ? "active" : ""} `}
@@ -150,7 +143,7 @@ const Todo = () => {
           {sortedTodos.map((todo) => (
             <li className="todo-item">
               <div className="left-group">
-                <input
+                {/* <input
                   type="checkbox"
                   checked={todo.completed}
                   onChange={() => {
@@ -169,7 +162,7 @@ const Todo = () => {
                       ),
                     );
                   }}
-                />
+                /> */}
                 <div className="text-group">
                   <div className="title-box">
                     <div
@@ -177,7 +170,7 @@ const Todo = () => {
                         todo.completed ? "todo-title completed" : "todo-title"
                       }
                     >
-                      {todo.id === editingId ? (
+                      {/* {todo.id === editingId ? (
                         <input
                           className="edit-input"
                           value={editText}
@@ -199,16 +192,17 @@ const Todo = () => {
                             }
                           }}
                         />
-                      ) : (
-                        <TodoItem 
-                        todo={todo} 
-                        editingId={editingId}
-                        editText={editText}
-                        setEditText={setEditText}
+                      ) : ( */}
+                        <TodoItem
+                          todo={todo}
+                          editingId={editingId}
+                          editText={editText}
+                          setEditText={setEditText}
                           setEditingId={setEditingId}
-
-                         />
-                      )}
+                          todos={todos}
+                          setTodos={setTodos}
+                        />
+                      {/* )} */}
                     </div>
                   </div>
                   <div className="todo-info">
