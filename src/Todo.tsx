@@ -1,9 +1,11 @@
 import { useState } from "react";
 import TodoItem from "./components/TodoItem";
 import TodoDates from "./components/TodoDates";
-import "./style.css";
 import TodoForm from "./components/TodoForm";
 import FilterButtons from "./components/FilterButtons";
+import TodoEditButton from "./components/TodoEditButton";
+import TodoDeleteButton from "./components/TodoDeleteButton";
+import "./style.css";
 
 const Todo = () => {
   const [text, setText] = useState("");
@@ -193,15 +195,15 @@ const Todo = () => {
                           }}
                         />
                       ) : ( */}
-                        <TodoItem
-                          todo={todo}
-                          editingId={editingId}
-                          editText={editText}
-                          setEditText={setEditText}
-                          setEditingId={setEditingId}
-                          todos={todos}
-                          setTodos={setTodos}
-                        />
+                      <TodoItem
+                        todo={todo}
+                        editingId={editingId}
+                        editText={editText}
+                        setEditText={setEditText}
+                        setEditingId={setEditingId}
+                        todos={todos}
+                        setTodos={setTodos}
+                      />
                       {/* )} */}
                     </div>
                   </div>
@@ -247,7 +249,7 @@ const Todo = () => {
                 </div>
               </div>
               <div className="right-group">
-                <button
+                {/* <button
                   className={
                     editingId === todo.id ? "right-btn save-btn" : "right-btn"
                   }
@@ -272,8 +274,17 @@ const Todo = () => {
                   }}
                 >
                   {editingId === todo.id ? "保存" : "編集"}
-                </button>
-                <button
+                </button> */}
+                <TodoEditButton
+                  editingId={editingId}
+                  editText={editText}
+                  setEditText={setEditText}
+                  setEditingId={setEditingId}
+                  todo={todo}
+                  todos={todos}
+                  setTodos={setTodos}
+                />
+                {/* <button
                   className="right-btn"
                   onClick={() => {
                     setDeletedTodos([...deletedTodos, todo]);
@@ -283,7 +294,15 @@ const Todo = () => {
                   }}
                 >
                   削除
-                </button>
+                </button> */}
+                <TodoDeleteButton
+                  todo={todo}
+                  todos={todos}
+                  deletedTodos={deletedTodos}
+                  setTodos={setTodos}
+                  setDeletedTodos={setDeletedTodos}
+                  setEditingId={setEditingId}
+                />
                 <select
                   className="status-select"
                   value={todo.status}
