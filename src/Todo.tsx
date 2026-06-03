@@ -5,6 +5,8 @@ import TodoForm from "./components/TodoForm";
 import FilterButtons from "./components/FilterButtons";
 import TodoEditButton from "./components/TodoEditButton";
 import TodoDeleteButton from "./components/TodoDeleteButton";
+import StatusSelect from "./components/StatusSelect";
+import TrashToggleButton from "./deletedArea/TrashToggleButton";
 import "./style.css";
 
 const Todo = () => {
@@ -303,7 +305,7 @@ const Todo = () => {
                   setDeletedTodos={setDeletedTodos}
                   setEditingId={setEditingId}
                 />
-                <select
+                {/* <select
                   className="status-select"
                   value={todo.status}
                   onChange={(e) =>
@@ -325,7 +327,12 @@ const Todo = () => {
                   <option>未完了</option>
                   <option>着手中</option>
                   <option>完了</option>
-                </select>
+                </select> */}
+                <StatusSelect
+                todo={todo}
+                todos={todos}
+                setTodos={setTodos}
+                />
               </div>
             </li>
           ))}
@@ -333,12 +340,17 @@ const Todo = () => {
         <div className="trash-area">
           <div className="trash-title">
             削除したリスト
-            <button
+            {/* <button
               className="trash-toggle-btn"
               onClick={() => setIsTrashOpen(!isTrashOpen)}
             >
               {isTrashOpen ? "非表示" : "表示"}
-            </button>
+            </button> */}
+            <TrashToggleButton
+            isTrashOpen={isTrashOpen}
+            setIsTrashOpen={setIsTrashOpen}
+            
+            />
           </div>
           {isTrashOpen && (
             <div className="trash-content">
