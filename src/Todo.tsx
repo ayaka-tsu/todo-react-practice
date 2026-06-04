@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useTodo } from "./hooks/useTodo";
 import TodoItem from "./components/TodoItem";
 import TodoDates from "./components/TodoDates";
 import TodoForm from "./components/TodoForm";
@@ -11,28 +11,39 @@ import RestoreButton from "./deletedArea/RestoreButton";
 import DeleteForeverButton from "./deletedArea/DeleteForeverButton";
 import "./style.css";
 
-  export type Todo = {
-    id: number;
-    text: string;
-    createdAt: string;
-    dueDate: string;
-    completed: boolean;
-    status: string;
-    completedAt: number | null;
-    order: number;
-  };
+export type Todo = {
+  id: number;
+  text: string;
+  createdAt: string;
+  dueDate: string;
+  completed: boolean;
+  status: string;
+  completedAt: number | null;
+  order: number;
+};
 const Todo = () => {
-  const [text, setText] = useState("");
-  const [todos, setTodos] = useState<
-    Todo[]
-  >([]);
-  const [deletedTodos, setDeletedTodos] = useState<
-Todo[]    
- >([]);
-  const [isTrashOpen, setIsTrashOpen] = useState(false);
-  const [filter, setFilter] = useState("すべて");
-  const [editingId, setEditingId] = useState<number | null>(null);
-  const [editText, setEditText] = useState("");
+  // const [text, setText] = useState("");
+  const { text,
+     setText, 
+     todos, 
+     setTodos,
+     deletedTodos,
+     setDeletedTodos,
+     isTrashOpen,
+     setIsTrashOpen,
+    filter,
+  setFilter,
+  editingId,
+  setEditingId,
+  editText,
+  setEditText,
+ } = useTodo();
+  // const [todos, setTodos] = useState<Todo[]>([]);
+  // const [deletedTodos, setDeletedTodos] = useState<Todo[]>([]);
+  // const [isTrashOpen, setIsTrashOpen] = useState(false);
+  // const [filter, setFilter] = useState("すべて");
+  // const [editingId, setEditingId] = useState<number | null>(null);
+  // const [editText, setEditText] = useState("");
   const addTodo = () => {
     if (!text.trim()) return;
     setTodos([
@@ -61,7 +72,6 @@ Todo[]
       order: restoreTodo.order,
       createdAt: restoreTodo.createdAt,
       dueDate: restoreTodo.dueDate,
-      // createdAt: new Date().toISOString().split("T")[0],
     };
 
     setTodos([...todos, resetTodo]);
