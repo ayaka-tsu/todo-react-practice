@@ -9,6 +9,54 @@ export const useTodo = () => {
               const [filter, setFilter] = useState("すべて");
                 const [editingId, setEditingId] = useState<number | null>(null);
   const [editText, setEditText] = useState("");
+    const addTodo = () => {
+    if (!text.trim()) return;
+    setTodos([
+      ...todos,
+      {
+        id: Date.now(),
+        text: text,
+        createdAt: new Date().toLocaleDateString("sv-SE"),
+        dueDate: "",
+        completed: false,
+        status: "未完了",
+        completedAt: Date.now(),
+        order: Date.now(),
+      },
+    ]);
+    setText("");
+  };
+  const handleDeleteForever = (id: number) => {
+    setDeletedTodos(deletedTodos.filter((todo) => todo.id !== id));
+  };
+  const handleRestore = (id: number) => {
+    const restoreTodo = deletedTodos.find((todo) => todo.id === id);
+    if (!restoreTodo) return;
+    const resetTodo = {
+      ...restoreTodo,
+      completed: false,
+      status: "未完了",
+      completedAt: null,
+      order: restoreTodo.order,
+      createdAt: restoreTodo.createdAt,
+      dueDate: restoreTodo.dueDate,
+    };
+    setTodos([...todos, resetTodo]);
+    setDeletedTodos(deletedTodos.filter((todo) => todo.id !== id));
+  };
+  const filteredTodos = todos.filter((todo) => {
+    if (filter === "すべて") return true;
+    return todo.status === filter;
+  });
+  const sortedTodos = [...filteredTodos].sort((a, b) => {
+    if (a.completed !== b.completed) {
+      return Number(a.completed) - Number(b.completed);
+    }
+    if (a.completed) {
+      return (a.completedAt ?? 0) - (b.completedAt ?? 0);
+    }
+    return a.order - b.order;
+  });
       return{
         text,
         setText,
@@ -24,5 +72,10 @@ export const useTodo = () => {
         setEditingId,
         editText,
         setEditText,
+        addTodo,
+        handleDeleteForever,
+        handleRestore,
+        filteredTodos,
+        sortedTodos,
       };
 };
