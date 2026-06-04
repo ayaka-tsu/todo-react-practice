@@ -25,32 +25,12 @@ const Todo = () => {
   const [text, setText] = useState("");
   const [todos, setTodos] = useState<
     Todo[]
-    // {
-    //   id: number;
-    //   text: string;
-    //   createdAt: string;
-    //   dueDate: string;
-    //   completed: boolean;
-    //   status: string;
-    //   completedAt: number | null;
-    //   order: number;
-    // }[]
   >([]);
   const [deletedTodos, setDeletedTodos] = useState<
-    {
-      id: number;
-      text: string;
-      createdAt: string;
-      dueDate: string;
-      completed: boolean;
-      status: string;
-      completedAt: number | null;
-      order: number;
-    }[]
-  >([]);
+Todo[]    
+ >([]);
   const [isTrashOpen, setIsTrashOpen] = useState(false);
   const [filter, setFilter] = useState("すべて");
-  // const [status, setStatus] = useState("未完了");
   const [editingId, setEditingId] = useState<number | null>(null);
   const [editText, setEditText] = useState("");
   const addTodo = () => {
