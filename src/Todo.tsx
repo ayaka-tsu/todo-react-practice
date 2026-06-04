@@ -8,6 +8,7 @@ import TodoDeleteButton from "./components/TodoDeleteButton";
 import StatusSelect from "./components/StatusSelect";
 import TrashToggleButton from "./deletedArea/TrashToggleButton";
 import RestoreButton from "./deletedArea/RestoreButton";
+import DeleteForeverButton from "./deletedArea/DeleteForeverButton";
 import "./style.css";
 
 const Todo = () => {
@@ -362,15 +363,19 @@ const Todo = () => {
                         元に戻す
                       </button> */}
                       <RestoreButton
-                      todo={todo}
-                      handleRestore={handleRestore}
+                        todo={todo}
+                        handleRestore={handleRestore}
                       />
-                      <button
+                      {/* <button
                         className="delete-btn"
                         onClick={() => handleDeleteForever(todo.id)}
                       >
                         完全削除
-                      </button>
+                      </button> */}
+                      <DeleteForeverButton
+                        todo={todo}
+                        handleDeleteForever={handleDeleteForever}
+                      />
                     </div>
                   </li>
                 ))}
