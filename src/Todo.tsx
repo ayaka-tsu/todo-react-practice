@@ -7,6 +7,7 @@ import TodoEditButton from "./components/TodoEditButton";
 import TodoDeleteButton from "./components/TodoDeleteButton";
 import StatusSelect from "./components/StatusSelect";
 import TrashToggleButton from "./deletedArea/TrashToggleButton";
+import RestoreButton from "./deletedArea/RestoreButton";
 import "./style.css";
 
 const Todo = () => {
@@ -328,11 +329,7 @@ const Todo = () => {
                   <option>着手中</option>
                   <option>完了</option>
                 </select> */}
-                <StatusSelect
-                todo={todo}
-                todos={todos}
-                setTodos={setTodos}
-                />
+                <StatusSelect todo={todo} todos={todos} setTodos={setTodos} />
               </div>
             </li>
           ))}
@@ -347,9 +344,8 @@ const Todo = () => {
               {isTrashOpen ? "非表示" : "表示"}
             </button> */}
             <TrashToggleButton
-            isTrashOpen={isTrashOpen}
-            setIsTrashOpen={setIsTrashOpen}
-            
+              isTrashOpen={isTrashOpen}
+              setIsTrashOpen={setIsTrashOpen}
             />
           </div>
           {isTrashOpen && (
@@ -359,12 +355,16 @@ const Todo = () => {
                   <li className="trash-item">
                     {todo.text}
                     <div className="trash-buttons">
-                      <button
+                      {/* <button
                         className="restore-btn"
                         onClick={() => handleRestore(todo.id)}
                       >
                         元に戻す
-                      </button>
+                      </button> */}
+                      <RestoreButton
+                      todo={todo}
+                      handleRestore={handleRestore}
+                      />
                       <button
                         className="delete-btn"
                         onClick={() => handleDeleteForever(todo.id)}
