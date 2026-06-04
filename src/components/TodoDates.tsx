@@ -1,13 +1,5 @@
-  type Todo={
-      id: number;
-      text: string;
-      createdAt: string;
-      dueDate: string;
-      completed: boolean;
-      status: string;
-      completedAt: number | null;
-      order: number;
-  }
+  import type { Todo } from "../Todo"
+
   type TodoDatesProps = {
     todo:Todo;
     todos:Todo[];

@@ -1,28 +1,11 @@
+import type { Todo } from "../Todo"
 type TodoEditButtonProps = {
    editingId: number | null;
      editText: string;
   setEditText: React.Dispatch<React.SetStateAction<string>>;
   setEditingId: React.Dispatch<React.SetStateAction<number | null>>;
-  todo: {
-    id: number;
-    text: string;
-    createdAt: string;
-    dueDate: string;
-    completed: boolean;
-    status: string;
-    completedAt: number | null;
-    order: number;
-  };
-  todos: {
-    id: number;
-    text: string;
-    createdAt: string;
-    dueDate: string;
-    completed: boolean;
-    status: string;
-    completedAt: number | null;
-    order: number;
-  }[];
+  todo: Todo;
+  todos: Todo[];
   setTodos: React.Dispatch<
     React.SetStateAction<
       {
