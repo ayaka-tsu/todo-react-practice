@@ -23,25 +23,26 @@ export type Todo = {
 };
 const Todo = () => {
   // const [text, setText] = useState("");
-  const { text,
-     setText, 
-     todos, 
-     setTodos,
-     deletedTodos,
-     setDeletedTodos,
-     isTrashOpen,
-     setIsTrashOpen,
+  const {
+    text,
+    setText,
+    todos,
+    setTodos,
+    deletedTodos,
+    setDeletedTodos,
+    isTrashOpen,
+    setIsTrashOpen,
     filter,
-  setFilter,
-  editingId,
-  setEditingId,
-  editText,
-  setEditText,
-  addTodo,
-  handleDeleteForever,
-  handleRestore,
-  sortedTodos,
- } = useTodo();
+    setFilter,
+    editingId,
+    setEditingId,
+    editText,
+    setEditText,
+    addTodo,
+    handleDeleteForever,
+    handleRestore,
+    sortedTodos,
+  } = useTodo();
   // const [todos, setTodos] = useState<Todo[]>([]);
   // const [deletedTodos, setDeletedTodos] = useState<Todo[]>([]);
   // const [isTrashOpen, setIsTrashOpen] = useState(false);
@@ -141,7 +142,7 @@ const Todo = () => {
         </div>
         <ul className="todo-list">
           {sortedTodos.map((todo) => (
-            <li className="todo-item">
+            <li key={todo.id} className="todo-item">
               <div className="left-group">
                 {/* <input
                   type="checkbox"

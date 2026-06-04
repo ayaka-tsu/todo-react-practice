@@ -103,8 +103,9 @@ align-self: flex-start;
 }
 .right-group{
     display: flex;
-    gap: 3px;
+    gap: 20px;
     flex-shrink: 0;
+    margin-left: 20px;
 }
 .right-btn{
     background-color: cornsilk;
@@ -116,7 +117,6 @@ align-self: flex-start;
         border: 1px solid #f3c679;
         border-radius: 3px;
         outline: none;
-
 }
 .date-input{
     height: 15px;
