@@ -27,6 +27,9 @@
     outline:none;
     border-color: palevioletred;
 }
+.add-form input:hover:not(:focus){
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.15);
+}
 .todo-app{
     width: 700px;
     margin: 0 auto;
@@ -124,6 +127,9 @@ align-self: flex-start;
     border-radius: 3px;
     border: 1px solid #df89b1f3;
 }
+.date-input:hover{
+        filter: brightness(105%);
+}
 .date-input:focus{
     outline:none;
     border-color:  palevioletred;
@@ -201,7 +207,13 @@ line-height: 1;
 }
 button{
     transition: 0.15s;
+    cursor: pointer;
 }
 button:active{
     transform: scale(0.95);
+}
+.due-over{
+color: crimson;}
+button:hover{
+    filter: brightness(110%);
 }

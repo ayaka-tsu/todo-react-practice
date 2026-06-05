@@ -6,6 +6,9 @@ type TodoDatesProps = {
   setTodos: React.Dispatch<React.SetStateAction<Todo[]>>;
 };
 const TodoDates = ({ todo, todos, setTodos }: TodoDatesProps) => {
+  const today = new Date().toLocaleDateString("sv-SE");
+  const isDueTodayOrOver=
+  todo.dueDate&&todo.dueDate<= today;
   return (
     <div className="date-row">
       <label>
@@ -28,7 +31,7 @@ const TodoDates = ({ todo, todos, setTodos }: TodoDatesProps) => {
       <label>
         期限
         <input
-          className="date-input"
+          className={`date-input ${isDueTodayOrOver ? "due-over" : ""}`}
           type="date"
           defaultValue={todo.dueDate}
           onChange={(e) => {
