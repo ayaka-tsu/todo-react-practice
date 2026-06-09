@@ -1,6 +1,8 @@
+import type { FilterType } from "../types/Todo";
+
 type FilterButtonsProps={
-    filter:string;
-    setFilter:React.Dispatch<React.SetStateAction<string>>;
+    filter:FilterType;
+    setFilter:React.Dispatch<React.SetStateAction<FilterType>>;
 };
 const FilterButtons = ({filter,setFilter}:FilterButtonsProps) =>{
     return(

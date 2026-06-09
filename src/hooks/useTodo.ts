@@ -1,12 +1,13 @@
 import { useState } from "react";
-import type {Todo} from "../Todo";
+import type {Todo} from "../types/Todo";
+import type { FilterType,StatusType } from "../types/Todo";
 
 export const useTodo = () => {
       const [text, setText] = useState("");
         const [todos, setTodos] = useState<Todo[]>([]);
           const [deletedTodos, setDeletedTodos] = useState<Todo[]>([]);
             const [isTrashOpen, setIsTrashOpen] = useState(false);
-              const [filter, setFilter] = useState("すべて");
+              const [filter, setFilter] = useState<FilterType>("すべて");
                 const [editingId, setEditingId] = useState<number | null>(null);
   const [editText, setEditText] = useState("");
     const addTodo = () => {
@@ -19,7 +20,7 @@ export const useTodo = () => {
         createdAt: new Date().toLocaleDateString("sv-SE"),
         dueDate: "",
         completed: false,
-        status: "未完了",
+        status: "未完了"as StatusType,
         completedAt: Date.now(),
         order: Date.now(),
       },
@@ -35,7 +36,7 @@ export const useTodo = () => {
     const resetTodo = {
       ...restoreTodo,
       completed: false,
-      status: "未完了",
+      status: "未完了"as StatusType,
       completedAt: null,
       order: restoreTodo.order,
       createdAt: restoreTodo.createdAt,

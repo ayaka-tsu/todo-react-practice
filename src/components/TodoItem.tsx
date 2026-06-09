@@ -1,4 +1,4 @@
-import type { Todo } from "../Todo";
+import type { Todo } from "../types/Todo";
 const TodoItem = ({
   todo,
   editingId,
@@ -11,18 +11,7 @@ const TodoItem = ({
   todo: Todo;
   todos: Todo[];
   setTodos: React.Dispatch<
-    React.SetStateAction<
-      {
-        id: number;
-        text: string;
-        createdAt: string;
-        dueDate: string;
-        completed: boolean;
-        status: string;
-        completedAt: number | null;
-        order: number;
-      }[]
-    >
+    React.SetStateAction<Todo[]>
   >;
   editingId: number | null;
   editText: string;

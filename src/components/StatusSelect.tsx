@@ -1,22 +1,10 @@
-import type { Todo } from "../Todo"
+import type { Todo } from "../types/Todo"
 type StatusSelectProps={
      todo: Todo;
   todos: Todo[];
    setTodos: React.Dispatch<
-    React.SetStateAction<
-      {
-        id: number;
-        text: string;
-        createdAt: string;
-        dueDate: string;
-        completed: boolean;
-        status: string;
-        completedAt: number | null;
-        order: number;
-      }[]
-    >
-  >;
-}
+    React.SetStateAction<Todo[]>>;
+};
 const StatusSelect = ({
     todo,
     todos,
@@ -33,7 +21,7 @@ const StatusSelect = ({
                         t.id === todo.id
                           ? {
                               ...t,
-                              status: e.target.value,
+                              status: e.target.value as Todo["status"],
                               completed: e.target.value === "完了",
                               completedAt:
                                 e.target.value === "完了" ? Date.now() : null,

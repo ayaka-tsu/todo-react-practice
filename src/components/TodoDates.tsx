@@ -1,4 +1,4 @@
-import type { Todo } from "../Todo";
+import type { Todo } from "../types/Todo";
 
 type TodoDatesProps = {
   todo: Todo;

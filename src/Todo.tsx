@@ -11,16 +11,6 @@ import RestoreButton from "./deletedArea/RestoreButton";
 import DeleteForeverButton from "./deletedArea/DeleteForeverButton";
 import "./style.css";
 
-export type Todo = {
-  id: number;
-  text: string;
-  createdAt: string;
-  dueDate: string;
-  completed: boolean;
-  status: string;
-  completedAt: number | null;
-  order: number;
-};
 const Todo = () => {
   // const [text, setText] = useState("");
   const {

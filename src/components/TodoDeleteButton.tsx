@@ -1,63 +1,16 @@
+import type{Todo}from"../types/Todo";
+
 type TodoDeleteButtonProps={
-  todo: {
-    id: number;
-    text: string;
-    createdAt: string;
-    dueDate: string;
-    completed: boolean;
-    status: string;
-    completedAt: number | null;
-    order: number;
-  };
-  todos: {
-    id: number;
-    text: string;
-    createdAt: string;
-    dueDate: string;
-    completed: boolean;
-    status: string;
-    completedAt: number | null;
-    order: number;
-  }[];
+  todo: Todo;
+  todos:Todo[];
   setTodos: React.Dispatch<
-    React.SetStateAction<
-      {
-        id: number;
-        text: string;
-        createdAt: string;
-        dueDate: string;
-        completed: boolean;
-        status: string;
-        completedAt: number | null;
-        order: number;
-      }[]
-    >
-  >;
+    React.SetStateAction<Todo[]>
+    >;
   setEditingId: React.Dispatch<React.SetStateAction<number | null>>;
-   deletedTodos:    
-   {
-      id: number;
-      text: string;
-      createdAt: string;
-      dueDate: string;
-      completed: boolean;
-      status: string;
-      completedAt: number | null;
-      order: number;
-    }[];
+   deletedTodos: Todo[];   
    setDeletedTodos:React.Dispatch<
-   React.SetStateAction<
-   {
-      id: number;
-      text: string;
-      createdAt: string;
-      dueDate: string;
-      completed: boolean;
-      status: string;
-      completedAt: number | null;
-      order: number;
-    }[]
->>
+   React.SetStateAction<Todo[]>
+>
 };
 const TodoDeleteButton=({
     todo,
